@@ -1,0 +1,48 @@
+.home-container {
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.hero {
+  height: 100vh; /* תופס בדיוק מסך אחד */
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  cursor: pointer;
+  transition: background-image 0.8s ease-in-out;
+}
+
+.rows-container {
+  padding: 40px 0; /* ריווח כללי למכולה */
+  background-color: #000;
+}
+
+.section-spacing {
+  margin-top: 80px; /* ריווח גדול יותר בין קטגוריות */
+  margin-bottom: 80px;
+}
+.section-title {
+  text-align: left;      /* מממרכז את הטקסט */
+  font-size: 2rem;
+  text-transform: uppercase; /* הופך את כל האותיות לגדולות - אופציונלי */         /* גודל נוח לכותרת */
+  margin-top: 40px;        /* מרווח מלמעלה */
+  margin-bottom: 20px;     /* מרווח מתחת לכותרת לפני הסרטים */
+  color: #ffffff;
+  font-weight: bold;
+}/* העטיפה של התוכן - כאן קורה הקסם */
+.content-wrapper {
+  max-width: 1400px; /* רוחב מקסימלי נוח לעין */
+  margin: 0 auto;    /* ממקם את הכל במרכז המסך */
+  padding: 0 40px;   /* מרווח בצדדים למסכים קטנים */
+}
+
+.rows-container {
+  /* מוחקים מפה את המרווחים אם היו, ה-content-wrapper מטפל בזה */
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}

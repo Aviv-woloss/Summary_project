@@ -1,39 +1,26 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import requests
+import os
 
-from app.core.config import settings
-from app.core.database import close_db, connect_db
-from app.routers import auth, info
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await connect_db()
-    yield
-    await close_db()
-
-
-app = FastAPI(
-    title="Portfolio API",
-    description="FastAPI + MongoDB (Beanie) with JWT authentication",
-    version="1.0.0",
-    lifespan=lifespan,
-)
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
+    allow_origins=["*"], 
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(auth.router)
-app.include_router(info.router)
+TMDB_API_KEY ="0356589713b772426c7fd2c10e27f401"; 
+BASE_URL = "https://api.themoviedb.org/3"
 
+@app.get("/api/movies/trending")
+def get_trending():
+    url = f"{BASE_URL}/trending/movie/week?api_key={TMDB_API_KEY}"
+    return requests.get(url).json().get("results", [])
 
-@app.get("/", tags=["root"])
-async def root():
-    return {"message": "Portfolio API is running"}
+@app.get("/api/movies/genre/{genre_id}")
+def get_by_genre(genre_id: int):
+    url = f"{BASE_URL}/discover/movie?api_key={TMDB_API_KEY}&with_genres={genre_id}"
+    return requests.get(url).json().get("results", [])

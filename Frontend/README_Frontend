@@ -1,0 +1,35 @@
+summary_project/
+│
+├──frontend/                     
+│   ├── public/
+│   │   └── index.html          
+│   │
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── tmdb.js         
+│   │   │   └── backend.js      
+│   │   │
+│   │   ├── components/         
+│   │   │   ├── layout/
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   └── Footer.jsx
+│   │   │   ├── movie/
+│   │   │   │   ├── PosterGrid.jsx    
+│   │   │   │   ├── TrailerModal.jsx  
+│   │   │   │   └── ReviewCard.jsx    
+│   │   │   └── SearchSpotlight.jsx   
+│   │   │
+│   │   ├── pages/              
+│   │   │   ├── Home.jsx        
+│   │   │   ├── MovieDetails.jsx
+│   │   │   └── Auth.jsx        
+│   │   │
+│   │   ├── App.jsx             
+│   │   └── index.js            
+│   │
+│   └── package.json            
+│
+├── backend/                     
+│
+│
+└── README.md

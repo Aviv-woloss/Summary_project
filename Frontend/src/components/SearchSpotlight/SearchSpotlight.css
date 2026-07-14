@@ -1,0 +1,69 @@
+.spotlight-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #080707;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+
+.spotlight-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.spotlight-item {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #000000;
+  transition: background-color 0.2s;
+}
+
+.spotlight-item:hover {
+  background-color: #000000;
+}
+
+.spotlight-item img {
+  width: 45px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.spotlight-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spotlight-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.spotlight-info span {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.spotlight-no-results {
+  padding: 20px;
+  text-align: center;
+  color: #aaa;
+}
+
+.spotlight-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.spotlight-container::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 4px;
+}
