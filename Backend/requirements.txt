@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pymongo
+beanie
+pydantic[email]
+pydantic-settings
+python-jose[cryptography]
+bcrypt
