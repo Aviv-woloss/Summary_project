@@ -1,16 +1,15 @@
 from beanie import init_beanie
-from pymongo import AsyncMongoClient
-
+from motor.motor_asyncio import AsyncIOMotorClient
 from app.core.config import settings
 from app.models.info import Info
 from app.models.user import User
 
-client: AsyncMongoClient | None = None
+client: AsyncIOMotorClient | None = None
 
 
 async def connect_db() -> None:
     global client
-    client = AsyncMongoClient(settings.MONGO_URI)
+    client = AsyncIOMotorClient(settings.MONGO_URI)
     await init_beanie(
         database=client[settings.DB_NAME],
         document_models=[User, Info],
@@ -20,5 +19,5 @@ async def connect_db() -> None:
 async def close_db() -> None:
     global client
     if client is not None:
-        await client.close()
+        client.close()
         client = None

@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
-pymongo
+motor
 beanie
 pydantic[email]
 pydantic-settings
