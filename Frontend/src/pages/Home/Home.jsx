@@ -60,14 +60,28 @@ return (
         onClick={() => navigate(`/movie/${currentMovie.id}`)}
       >
         <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <h1>{currentMovie.title}</h1>
-          <p className="hero-overview">
-            {currentMovie.overview.length > 200 
-              ? `${currentMovie.overview.substring(0, 200)}...` 
-              : currentMovie.overview}
-          </p>
-        </div>
+<div className="hero-content">
+  <h1>{currentMovie.title}</h1>
+  <p className="hero-overview">
+    {currentMovie.overview.length > 200 
+      ? (
+        <>
+          {currentMovie.overview.substring(0, 200)}
+          <span 
+            className="read-more" 
+            onClick={(e) => {
+              e.stopPropagation(); 
+              navigate(`/movie/${currentMovie.id}`);
+            }}
+          >
+            ...Read more
+          </span>
+        </>
+      ) 
+      : currentMovie.overview
+    }
+  </p>
+</div>
       </div>
     )}
     

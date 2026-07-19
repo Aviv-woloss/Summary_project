@@ -1,72 +1,99 @@
-.home-container {
-  min-height: 100vh;
-  background-color: #000;
-}
+/* src/pages/Home/Home.css */
+.home-container { min-height: 100vh; background-color: var(--bg); }
 
 .hero {
-  height: 100vh; /* תופס בדיוק מסך אחד */
+  height: 100vh;
   width: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 40px;
+  padding: 0 48px 70px 48px;
   cursor: pointer;
-  transition: background-image 0.8s ease-in-out;
 }
 
-.rows-container {
-  padding: 40px 0; /* ריווח כללי למכולה */
-  background-color: #000;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 6, 7, 0.55) 0%,
+    rgba(6, 6, 7, 0.15) 12%,
+    transparent 24%,
+    transparent 52%,
+    rgba(6, 6, 7, 0.55) 78%,
+    var(--bg) 100%
+  );
 }
 
-.section-spacing {
-  margin-top: 80px; /* ריווח גדול יותר בין קטגוריות */
-  margin-bottom: 80px;
+/* Referenced in Home.jsx as a sibling of hero-content, layered above ::before */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(6, 6, 7, 0.55) 0%, transparent 60%);
+  z-index: 1;
 }
-.section-title {
-  text-align: left;      /* מממרכז את הטקסט */
-  font-size: 2rem;
-  text-transform: uppercase; /* הופך את כל האותיות לגדולות - אופציונלי */         /* גודל נוח לכותרת */
-  margin-top: 40px;        /* מרווח מלמעלה */
-  margin-bottom: 20px;     /* מרווח מתחת לכותרת לפני הסרטים */
-  color: #ffffff;
-  font-weight: bold;
-}/* העטיפה של התוכן - כאן קורה הקסם */
-.content-wrapper {
-  max-width: 1400px; /* רוחב מקסימלי נוח לעין */
-  margin: 0 auto;    /* ממקם את הכל במרכז המסך */
-  padding: 0 40px;   /* מרווח בצדדים למסכים קטנים */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
 }
+
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3.4rem;
+  margin-bottom: 16px;
+  color: var(--text-main);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.hero-overview {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 560px;
+}
+
+.content-wrapper { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
 
 .rows-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;  
-  padding-top: 110px; 
-}
-.hero-content {
-  /* מרים את כל בלוק הטקסט (כותרת + תקציר) למעלה */
-  margin-bottom: 5vh; 
-  /* מומלץ גם להוסיף הצללה קלה כדי שהטקסט יבלוט טוב יותר על הרקע המשתנה */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  gap: 44px;
+  padding-top: 56px;
+  padding-bottom: 40px;
 }
 
-.hero-overview {
-  /* מגביל את רוחב התקציר לשליש מרוחב המסך */
-  max-width: 33vw; 
-  
-  /* אופציונלי: שיפור קריאות של הטקסט עצמו */
-  line-height: 1.5;
-  font-size: 1.1rem; /* אפשר לשחק עם הגודל לפי הטעם שלך */
-  margin-top: 10px;
+.section-spacing {
+  margin-top: 8px;
 }
+
 .browse-title {
-  font-size: 2.5rem; /* גדול ומרשים יותר מכותרת השורה */
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .hero { height: 70vh; padding: 0 24px 44px 24px; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .content-wrapper { padding: 0 24px; }
+}
+.read-more {
+  color: white; 
+  cursor: pointer;
+  font-weight: 400;
+  margin-left: 5px;
+  transition: color 0.3s var(--ease);
+}
+
+.read-more:hover {
+  color: var(--primary); 
 }

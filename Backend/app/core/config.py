@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     MONGO_URI: str = "mongodb://localhost:27017"
-    DB_NAME: str = "portfolioDB"
+    DB_NAME: str = "watchtimeDB"
     JWT_SECRET: str = "change-me-in-production"
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRE_MINUTES: int = 60

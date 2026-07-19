@@ -1,14 +1,14 @@
-.movie-row {
-  margin-bottom: 50px; /* קצת יותר אוויר בין השורות */
-}
+/* src/components/movie/MovieRow/MovieRow.css */
+.movie-row { margin-bottom: 44px; }
 
-/* כותרת השורה (למשל: Action Movies) עם קו טורקיז תואם לדף הפרופיל */
 .section-title {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #ffffff;
-  border-left: 4px solid #14b8a6; /* הטורקיז שלנו */
-  padding-left: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--text-main);
+  padding-left: 14px;
+  border-left: 2px solid var(--primary);
+  letter-spacing: 0.01em;
 }
 
 .row-wrapper {
@@ -17,92 +17,84 @@
   align-items: center;
 }
 
-/* איחוד כל ההגדרות של מכולת הפוסטרים למקום אחד */
 .row-posters {
   display: flex;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  padding: 20px 0; /* נותן מקום להגדלה (scale) של הפוסטר בלי שיחתך */
-  gap: 15px;
-  scrollbar-width: none; /* מסתיר פס גלילה בפיירפוקס */
+  overflow-x: auto;
+  gap: 18px;
+  padding: 10px 4px 16px;
+  scrollbar-width: none;
 }
 
-.row-posters::-webkit-scrollbar {
-  display: none; /* מסתיר פס גלילה בכרום/ספארי */
-}
+.row-posters::-webkit-scrollbar { display: none; }
 
 .poster-link {
-  min-width: 220px;
-  transition: transform 0.3s ease;
-  position: relative; /* חשוב כדי שה-z-index יעבוד */
+  display: block;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
-/* אפקט הגדלה והילת טורקיז כשעוברים על סרט */
 .poster-link:hover {
-  transform: scale(1.05);
-  z-index: 10; /* דואג שהפוסטר יקפוץ מעל הפוסטרים שלידו */
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--shadow-strong);
 }
 
 .row-poster {
-  width: 100%;
-  height: 330px;
+  width: 190px;
+  height: 285px;
   object-fit: cover;
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease, border 0.3s ease;
+  display: block;
+  transition: filter 0.35s var(--ease);
+  background: var(--surface);
 }
 
 .poster-link:hover .row-poster {
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.5); /* גלואו עתידני מרהיב */
-  border: 1px solid #14b8a6;
+  filter: brightness(1.05);
 }
 
-.poster-link h3 {
-  margin-top: 10px;
-  font-size: 14px;
-  text-align: center;
-  color: #cccccc;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* --- כפתורי הגלילה (חיצים) --- */
+/* Carousel arrows referenced in MovieRow.jsx as .scroll-btn.left / .scroll-btn.right */
 .scroll-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 90%; /* הכפתור יהיה כמעט בגובה של הפוסטר, נוח יותר ללחיצה */
-  z-index: 50;
+  top: 0;
+  bottom: 16px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 6, 7, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-size: 1rem;
   cursor: pointer;
-  font-size: 30px;
-  opacity: 0; /* מוסתר כברירת מחדל! */
-  transition: all 0.3s ease;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease), background-color 0.25s var(--ease);
 }
 
-/* החיצים מופיעים רק כשהעכבר נמצא על השורה עצמה */
 .row-wrapper:hover .scroll-btn {
   opacity: 1;
 }
 
-/* כשמרחפים על החץ עצמו - הוא נדלק בצבע טורקיז */
 .scroll-btn:hover {
-  background: rgba(20, 184, 166, 0.8);
-  color: #000000;
+  background: rgba(20, 184, 166, 0.25);
+  border-color: var(--primary);
 }
 
-.scroll-btn.left { 
-  left: 0; 
-  border-top-right-radius: 8px; 
-  border-bottom-right-radius: 8px; 
+.scroll-btn.left {
+  left: 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
-.scroll-btn.right { 
-  right: 0; 
-  border-top-left-radius: 8px; 
-  border-bottom-left-radius: 8px; 
+.scroll-btn.right {
+  right: 0;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+@media (max-width: 640px) {
+  .row-poster { width: 140px; height: 210px; }
+  .scroll-btn { display: none; }
 }

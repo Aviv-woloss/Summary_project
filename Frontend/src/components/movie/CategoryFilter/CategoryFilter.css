@@ -1,34 +1,39 @@
-
-.filter-container { 
-  display: flex; 
-  gap: 10px; 
-  margin: 15px 0 30px 0; /* ה-0 מבטל את הדחיפה פנימה ומיישר הכל לשמאל */
-  overflow-x: auto; 
-  padding-bottom: 10px; 
-  scrollbar-width: none; 
+.filter-container {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0 36px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
 }
 
 .filter-container::-webkit-scrollbar {
-  display: none; /* לכרום, ספארי ואדג' */
+  display: none;
 }
 
-.filter-btn { 
-  background: #111111; 
-  color: #cccccc; 
-  border: 1px solid #333333; 
-  padding: 8px 24px; 
-  border-radius: 25px; /* עיגול קצת יותר רך ומודרני */
-  cursor: pointer; 
-  transition: all 0.3s ease; 
+.filter-btn {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 9px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
   font-weight: 500;
-  white-space: nowrap; /* מונע מהטקסט לרדת שורה במסכים קטנים */
+  font-size: 0.88rem;
+  white-space: nowrap;
 }
 
-/* מצב פעיל (Active) ומעבר עכבר (Hover) - עכשיו בטורקיז ממותג! */
-.filter-btn.active, 
-.filter-btn:hover { 
-  background: #14b8a6; 
-  border-color: #14b8a6; 
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3); /* הילת טורקיז עדינה שנותנת עומק */
+.filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #04211d;
+  font-weight: 600;
+  box-shadow: 0 6px 18px var(--primary-glow);
 }
