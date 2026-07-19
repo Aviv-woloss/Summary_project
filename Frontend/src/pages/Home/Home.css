@@ -41,8 +41,32 @@
 }
 
 .rows-container {
-  /* מוחקים מפה את המרווחים אם היו, ה-content-wrapper מטפל בזה */
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 40px;  
+  padding-top: 110px; 
+}
+.hero-content {
+  /* מרים את כל בלוק הטקסט (כותרת + תקציר) למעלה */
+  margin-bottom: 5vh; 
+  /* מומלץ גם להוסיף הצללה קלה כדי שהטקסט יבלוט טוב יותר על הרקע המשתנה */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-overview {
+  /* מגביל את רוחב התקציר לשליש מרוחב המסך */
+  max-width: 33vw; 
+  
+  /* אופציונלי: שיפור קריאות של הטקסט עצמו */
+  line-height: 1.5;
+  font-size: 1.1rem; /* אפשר לשחק עם הגודל לפי הטעם שלך */
+  margin-top: 10px;
+}
+.browse-title {
+  font-size: 2.5rem; /* גדול ומרשים יותר מכותרת השורה */
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

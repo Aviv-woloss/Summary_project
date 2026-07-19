@@ -85,3 +85,38 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+/* הסתרת אזור החיפוש וכפתור ההתחברות כברירת מחדל */
+.nav-center, 
+.nav-right {
+  opacity: 0;
+  visibility: hidden;
+  /* מוסיף אנימציה חלקה שמותאמת לזמן ההופעה של הרקע השחור */
+  transition: opacity 0.4s ease, visibility 0.4s ease; 
+}
+
+/* הופעת האלמנטים רק כאשר הנאב-באר מקבל את המחלקה scrolled (בזמן גלילה) */
+.navbar.scrolled .nav-center,
+.navbar.scrolled .nav-right {
+  opacity: 1;
+  visibility: visible;
+}
+/* עיצוב הלוגו המלא */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff; /* המילה Time תישאר בלבן */
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+/* צביעת המילה Watch בלבד */
+.logo-accent {
+  color: #14b8a6; /* צבע הטורקיז של האתר. לכחול מלא אפשר להשתמש ב-#0ea5e9 */
+  transition: color 0.2s ease;
+}
+
+/* אפקט עדין בריחוף עכבר על כל הלוגו */
+.logo:hover .logo-accent {
+  color: #0d9488; /* טורקיז כהה יותר ב-Hover */
+}

@@ -1,0 +1,142 @@
+/* עוטף את כל העמוד, דואג שהכל יהיה ממורכז */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  position: relative;
+}
+
+/* עיצוב ה-Navbar המצומצם */
+.auth-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 48px; /* ריווח תואם לשאר דפי האתר */
+  z-index: 20; /* דואג שהלוגו יהיה מעל הרקע וניתן ללחיצה */
+}
+
+.auth-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none; /* ביטול קו תחתון של קישור */
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.auth-logo:hover {
+  opacity: 0.85; /* אפקט מעבר עדין בריחוק עכבר */
+}
+
+/* תמונת רקע עם כיסוי שחור מעליה */
+.auth-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* כרטיסיית ההתחברות עצמה */
+.auth-card {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 60px 68px 40px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  margin-top: 80px; /* מונע התנגשות פיזית עם הלוגו במסכים קטנים במיוחד */
+}
+
+.auth-title {
+  font-size: 2rem;
+  margin-bottom: 28px;
+  font-weight: bold;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* עיצוב שדות ההזנה */
+.auth-input {
+  background-color: #333333;
+  border: none;
+  border-radius: 4px;
+  padding: 16px 20px;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.auth-input::placeholder {
+  color: #8c8c8c;
+}
+
+.auth-input:focus {
+  outline: none;
+  background-color: #454545;
+  box-shadow: 0 0 0 2px #14b8a6;
+}
+
+/* כפתור השליחה */
+.auth-button {
+  background-color: #14b8a6;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 16px;
+  border-radius: 4px;
+  border: none;
+  margin-top: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.auth-button:hover {
+  background-color: #0d9488
+}
+
+/* טקסט ההחלפה */
+.auth-switch {
+  margin-top: 30px;
+  color: #737373;
+  font-size: 1rem;
+}
+
+.auth-switch span {
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: text-decoration 0.2s ease;
+}
+
+.auth-switch span:hover {
+  text-decoration: underline;
+}
+
+/* התאמה למובייל - מקטין מעט את הריווחים בצדדים */
+@media (max-width: 500px) {
+  .auth-header {
+    padding: 20px 24px;
+  }
+  .auth-card {
+    padding: 40px 24px;
+    margin: 80px 16px 20px 16px;
+  }
+}
+/* צביעת המילה Watch בלבד בלוגו של דף ההתחברות */
+.logo-accent {
+  color: #14b8a6; /* צבע הטורקיז של האתר */
+  transition: color 0.2s ease;
+}
+

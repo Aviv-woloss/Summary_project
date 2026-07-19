@@ -28,11 +28,10 @@ export const searchMovies = async (query) => {
     const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
     const data = await response.json();
     return data.results;
-};
+}
+
 export const fetchByGenre = async (genreId) => {
     if (genreId === 'all') return await fetchTrending();
-    
-    // ודא שה-URL הזה מתאים למה שאתה צריך, הוספתי API_KEY כמו בשאר הפונקציות
     const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
     const data = await response.json();
     return data.results;

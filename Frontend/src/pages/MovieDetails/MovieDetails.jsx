@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieDetails, getImageUrl } from "../../api/tmdb";
-import TrailerModal from "../../components/movie/TrailerModal";
+import "./MovieDetails.css"; 
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [showTrailer, setShowTrailer] = useState(false);
+  
+
+  const [reviews, setReviews] = useState([
+    { _id: "1", user: "John Doe", rating: 9, text: "vjkvklvv;", date: "2026-07-18" },
+    { _id: "2", user: "Jane Smith", rating: 7, text: "fififoio", date: "2026-07-19" }
+  ]);
+  const [newReviewText, setNewReviewText] = useState("");
+  const [newReviewRating, setNewReviewRating] = useState(10);
 
   useEffect(() => {
     const loadDetails = async () => {
@@ -20,52 +27,111 @@ function MovieDetails() {
     loadDetails();
   }, [id]);
 
-  if (!movie) return <div className="text-white text-center pt-20">Loading...</div>;
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    if (!newReviewText.trim()) return;
+
+    const newReview = {
+      _id: Date.now().toString(), 
+      user: "Current User",
+      rating: newReviewRating,
+      text: newReviewText,
+      date: new Date().toISOString().split('T')[0]
+    };
+
+    setReviews([newReview, ...reviews]);
+    setNewReviewText("");
+    setNewReviewRating(10);
+
+  };
+
+  if (!movie) return <div className="loading">Loading...</div>;
 
   const trailer = movie.videos?.results?.find(
     (vid) => vid.type === "Trailer" && vid.site === "YouTube"
   );
 
   return (
-    <div className="bg-neutral-950 min-h-screen text-white">
+    <div className="details-container">   
       <div
-        className="h-[60vh] bg-cover bg-center relative"
+        className="hero-backdrop"
         style={{ backgroundImage: `url('${getImageUrl(movie.backdrop_path)}')` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 to-transparent"></div>
-      </div>
+      ></div>
 
-      <div className="px-12 relative z-10 -mt-32 pb-12 flex gap-8 flex-col md:flex-row">
+      <div className="content-wrapper">
         <img
           src={getImageUrl(movie.poster_path, "w500")}
           alt={movie.title}
-          className="w-64 rounded-lg shadow-2xl object-cover"
+          className="poster-image"
         />
-        <div className="flex-1 mt-8 md:mt-32">
-          <h1 className="text-4xl font-bold mb-2">{movie.title}</h1>
-          <div className="flex gap-4 mb-6 text-gray-400 items-center">
+        
+        <div className="info-section">
+          <h1 className="movie-title">{movie.title}</h1>
+          <div className="movie-meta">
             <span>{movie.release_date?.substring(0, 4)}</span>
             <span>•</span>
             <span>{movie.runtime} min</span>
             <span>•</span>
-            <span>⭐ {movie.vote_average?.toFixed(1)}/10</span>
+            <span>{movie.vote_average?.toFixed(1)}/10</span>
           </div>
-          <p className="text-lg text-gray-200 mb-8 max-w-3xl">{movie.overview}</p>
+          <p className="movie-overview">{movie.overview}</p>
           
           {trailer && (
-            <button
-              onClick={() => setShowTrailer(true)}
-              className="bg-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
-            >
-              Watch Trailer
-            </button>
+            <div className="trailer-container">
+              <iframe
+                src={`https://www.youtube.com/embed/${trailer.key}`}
+                title={`${movie.title} Trailer`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           )}
+
+          <div className="reviews-section">
+            <h2 className="reviews-title">User Reviews</h2>
+            
+            <form className="review-form" onSubmit={handleReviewSubmit}>
+              <div className="review-form-header">
+                <label>Rating:</label>
+                <select 
+                  value={newReviewRating} 
+                  onChange={(e) => setNewReviewRating(Number(e.target.value))}
+                  className="review-select"
+                >
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1} / 10</option>
+                  ))}
+                </select>
+              </div>
+              <textarea 
+                className="review-textarea"
+                placeholder="What did you think about the movie?"
+                value={newReviewText}
+                onChange={(e) => setNewReviewText(e.target.value)}
+                rows="3"
+              />
+              <button type="submit" className="review-submit-btn">Post Review</button>
+            </form>
+
+            <div className="reviews-list">
+              {reviews.length > 0 ? (
+                reviews.map((review) => (
+                  <div key={review._id} className="review-card">
+                    <div className="review-header">
+                      <span className="review-user">{review.user}</span>
+                      <span className="review-rating"> {review.rating}/10</span>
+                    </div>
+                    <p className="review-text">{review.text}</p>
+                    <span className="review-date">{review.date}</span>
+                  </div>
+                ))
+              ) : (
+                <p className="no-reviews">Be the first to review this movie!</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-
-      {showTrailer && (
-        <TrailerModal videoKey={trailer.key} onClose={() => setShowTrailer(false)} />
-      )}
     </div>
   );
 }

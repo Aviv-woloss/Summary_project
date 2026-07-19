@@ -1,31 +1,47 @@
 .movie-row {
-  margin-bottom: 40px;
+  margin-bottom: 50px; /* קצת יותר אוויר בין השורות */
 }
 
-.movie-row h2 {
+/* כותרת השורה (למשל: Action Movies) עם קו טורקיז תואם לדף הפרופיל */
+.section-title {
   font-size: 1.5rem;
   margin-bottom: 15px;
+  color: #ffffff;
+  border-left: 4px solid #14b8a6; /* הטורקיז שלנו */
+  padding-left: 12px;
 }
 
+.row-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* איחוד כל ההגדרות של מכולת הפוסטרים למקום אחד */
 .row-posters {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 10px 0;
+  scroll-behavior: smooth;
+  padding: 20px 0; /* נותן מקום להגדלה (scale) של הפוסטר בלי שיחתך */
   gap: 15px;
+  scrollbar-width: none; /* מסתיר פס גלילה בפיירפוקס */
 }
 
 .row-posters::-webkit-scrollbar {
-  display: none;
+  display: none; /* מסתיר פס גלילה בכרום/ספארי */
 }
 
 .poster-link {
   min-width: 220px;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
+  position: relative; /* חשוב כדי שה-z-index יעבוד */
 }
 
+/* אפקט הגדלה והילת טורקיז כשעוברים על סרט */
 .poster-link:hover {
   transform: scale(1.05);
+  z-index: 10; /* דואג שהפוסטר יקפוץ מעל הפוסטרים שלידו */
 }
 
 .row-poster {
@@ -33,52 +49,60 @@
   height: 330px;
   object-fit: cover;
   border-radius: 8px;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.poster-link:hover .row-poster {
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.5); /* גלואו עתידני מרהיב */
+  border: 1px solid #14b8a6;
 }
 
 .poster-link h3 {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 14px;
   text-align: center;
+  color: #cccccc;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.row-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
 
+/* --- כפתורי הגלילה (חיצים) --- */
 .scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
-  width: 40px;
-  height: 100px;
+  width: 50px;
+  height: 90%; /* הכפתור יהיה כמעט בגובה של הפוסטר, נוח יותר ללחיצה */
   z-index: 50;
   cursor: pointer;
-  font-size: 24px;
-  opacity: 0; /* מופיע רק כשעושים Hover */
-  transition: opacity 0.3s;
+  font-size: 30px;
+  opacity: 0; /* מוסתר כברירת מחדל! */
+  transition: all 0.3s ease;
 }
 
+/* החיצים מופיעים רק כשהעכבר נמצא על השורה עצמה */
 .row-wrapper:hover .scroll-btn {
   opacity: 1;
 }
 
-.scroll-btn.left { left: 0; }
-.scroll-btn.right { right: 0; }
-
-.row-posters {
-  display: flex;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  padding: 20px 0;
-  gap: 15px;
-  scrollbar-width: none; /* מסתיר את פס הגלילה בדפדפנים מסוימים */
+/* כשמרחפים על החץ עצמו - הוא נדלק בצבע טורקיז */
+.scroll-btn:hover {
+  background: rgba(20, 184, 166, 0.8);
+  color: #000000;
 }
 
-.row-posters::-webkit-scrollbar { display: none; }
+.scroll-btn.left { 
+  left: 0; 
+  border-top-right-radius: 8px; 
+  border-bottom-right-radius: 8px; 
+}
+
+.scroll-btn.right { 
+  right: 0; 
+  border-top-left-radius: 8px; 
+  border-bottom-left-radius: 8px; 
+}

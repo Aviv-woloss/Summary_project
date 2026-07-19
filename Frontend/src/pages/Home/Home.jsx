@@ -77,7 +77,7 @@ return (
         <MovieRow title="Popular Movies" movies={popular} />
 
         <section className="section-spacing">
-            <h2 className="section-title">Browse by Category</h2>
+            <h2 className="browse-title">Browse by Category</h2>
             <CategoryFilter 
               categories={categories} 
               activeCategory={activeCategory} 
