@@ -1,39 +1,35 @@
-.filter-container {
-  display: flex;
+/* src/components/movie/CategoryFilter/CategoryFilter.css */
+.filter-container { 
+  display: flex; 
   gap: 10px;
-  margin: 15px 0 36px 0;
-  overflow-x: auto;
+  margin: 15px 0 30px 0;
+  overflow-x: auto; 
   padding-bottom: 10px;
-  scrollbar-width: none;
+  scrollbar-width: none; 
 }
 
 .filter-container::-webkit-scrollbar {
   display: none;
 }
 
-.filter-btn {
-  background: transparent;
-  color: var(--text-dim);
-  border: 1px solid var(--border);
-  padding: 9px 24px;
-  border-radius: 999px;
+.filter-btn { 
+  background: #000000; 
+  color: #cccccc;
+  /* הוספת קו מתאר בצבע תכלת/טורקיז עדין כברירת מחדל */
+  border: 1px solid #14b8a6; 
+  padding: 8px 24px; 
+  border-radius: 25px;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s ease; 
   font-weight: 500;
-  font-size: 0.88rem;
   white-space: nowrap;
 }
 
-.filter-btn:hover {
-  border-color: var(--border-strong);
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.filter-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #04211d;
-  font-weight: 600;
-  box-shadow: 0 6px 18px var(--primary-glow);
+/* מצב פעיל (Active) ומעבר עכבר (Hover) - מילוי מלא בטורקיז */
+.filter-btn.active, 
+.filter-btn:hover { 
+  background: #14b8a6; 
+  border-color: #14b8a6; 
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
 }

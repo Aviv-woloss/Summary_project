@@ -56,7 +56,7 @@ function Navbar() {
                 setIsLoggedIn(false); 
                 window.location.href = "/";
               }}
-              style={{ background: "transparent", border: "1px solid #14b8a6", marginLeft: "10px", cursor: "pointer" }}
+              style={{ border: "1px solid #14b8a6", marginLeft: "10px", cursor: "pointer" }}
             >
               Logout
             </button>

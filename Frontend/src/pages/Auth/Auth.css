@@ -19,7 +19,6 @@
 
 .auth-logo {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--text-main);
@@ -66,7 +65,6 @@
 
 .auth-title {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 2rem;
   margin-bottom: 30px;
   font-weight: 600;

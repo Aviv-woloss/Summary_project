@@ -23,11 +23,35 @@ function MovieRow({ title, movies }) {
       <div className="row-wrapper">
         <button className="scroll-btn left" onClick={() => scroll("left")}>&#10094;</button>
         <div className="row-posters" ref={rowRef}>
-          {movies.map((movie) => (
-            <Link key={movie.id} to={`/movie/${movie.id}`} className="poster-link">
-              <img src={getImageUrl(movie.poster_path, "w500")} alt={movie.title} className="row-poster" />
-            </Link>
-          ))}
+          {movies.map((movie) => {
+            const releaseYear = movie.release_date ? movie.release_date.substring(0, 4) : "";
+            const rating = movie.vote_average ? movie.vote_average.toFixed(1) : "";
+
+            return (
+              <Link key={movie.id} to={`/movie/${movie.id}`} className="poster-link">
+                <div className="poster-container">
+                  <img src={getImageUrl(movie.poster_path, "w500")} alt={movie.title} className="row-poster" />
+                </div>
+                <div className="movie-item-info">
+                  <h4 className="movie-item-title">{movie.title}</h4>
+                  <div className="movie-item-meta">
+                    {/* השנה תופיע בצד ימין */}
+                    {releaseYear && <span className="movie-item-year">{releaseYear}</span>}
+                    
+                    {/* הדירוג עם הכוכב יופיע בצד שמאל */}
+                    {rating && (
+                      <div className="movie-item-rating">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <span>{rating}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
         <button className="scroll-btn right" onClick={() => scroll("right")}>&#10095;</button>
       </div>
