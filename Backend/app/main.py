@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import connect_db, close_db
-from app.routers import auth, info, movies
+from app.routers import auth, info, movies, user_movies
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,3 +24,4 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(info.router)
 app.include_router(movies.router)
+app.include_router(user_movies.router)
