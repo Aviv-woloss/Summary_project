@@ -14,6 +14,12 @@ export default function Profile() {
     }
   }, [navigate]);
 
+  // פונקציית יציאה מהחשבון (שהועברה מה-Navbar)
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "/";
+  };
+
   // נתוני דמה (Mock Data) לפרונטאנד כרגע
   const user = {
     fullName: "Aviv",
@@ -47,14 +53,20 @@ export default function Profile() {
             <p className="profile-email">{user.email}</p>
             <p className="profile-date">Member since {user.joinDate}</p>
           </div>
-          <div className="profile-stats">
-            <div className="stat-box">
-              <h3>{watchlistMovies.length}</h3>
-              <span>Watchlist</span>
-            </div>
-            <div className="stat-box">
-              <h3>{favoriteMovies.length}</h3>
-              <span>Favorites</span>
+          
+          <div className="profile-actions-wrapper">
+            <button className="profile-logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+            <div className="profile-stats">
+              <div className="stat-box">
+                <h3>{watchlistMovies.length}</h3>
+                <span>Watchlist</span>
+              </div>
+              <div className="stat-box">
+                <h3>{favoriteMovies.length}</h3>
+                <span>Favorites</span>
+              </div>
             </div>
           </div>
         </div>
@@ -100,7 +112,7 @@ export default function Profile() {
                       <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
                     </td>
                     <td className="td-year">{movie.release_date?.substring(0, 4)}</td>
-                    <td className="td-rating">⭐ {movie.vote_average?.toFixed(1)}</td>
+                    <td className="td-rating"> {movie.vote_average?.toFixed(1)}</td>
                     <td className="td-action">
                       <button className="remove-btn">Remove</button>
                     </td>

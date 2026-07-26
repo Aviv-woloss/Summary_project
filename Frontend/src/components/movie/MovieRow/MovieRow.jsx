@@ -1,11 +1,13 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../../api/tmdb";
 import "./MovieRow.css";
 
 function MovieRow({ title, movies }) {
   const rowRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
+  // פונקציית הגלילה הידנית בלחיצה על החיצים
   const scroll = (direction) => {
     if (rowRef.current) {
       const { scrollLeft, clientWidth } = rowRef.current;
@@ -17,10 +19,40 @@ function MovieRow({ title, movies }) {
     }
   };
 
+  // אפקט גלילה אוטומטית (סרט נע) רציף וחלק
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row || !movies || movies.length === 0) return;
+
+    let animationFrameId;
+    const speed = 0.4; // מהירות הגלילה (ניתן להקטין או להגדיל)
+
+    const startScrolling = () => {
+      if (!isHovered) {
+        row.scrollLeft += speed;
+        
+        // כשהגלילה מגיעה לסוף, חוזרים להתחלה בצורה חלקה
+        if (row.scrollLeft >= row.scrollWidth - row.clientWidth - 1) {
+          row.scrollLeft = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(startScrolling);
+    };
+
+    animationFrameId = requestAnimationFrame(startScrolling);
+
+    // ניקוי האנימציה ב-Unmount של הקומפוננטה
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [movies, isHovered]);
+
   return (
     <div className="movie-row">
       <h2 className="section-title">{title}</h2>
-      <div className="row-wrapper">
+      <div 
+        className="row-wrapper"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <button className="scroll-btn left" onClick={() => scroll("left")}>&#10094;</button>
         <div className="row-posters" ref={rowRef}>
           {movies.map((movie) => {

@@ -46,3 +46,9 @@ export const getImageUrl = (path, size = "original") => {
     if (!path) return "";
     return `https://image.tmdb.org/t/p/${size}${path}`;
 };
+
+export const fetchTopRated = async () => {
+    const response = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+};

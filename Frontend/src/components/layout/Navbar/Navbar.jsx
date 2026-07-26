@@ -47,25 +47,13 @@ function Navbar() {
 
       <div className="nav-right">
         {isLoggedIn ? (
-          <>
-            <Link to="/profile" className="login-btn">Profile</Link>
-            <button 
-              className="login-btn" 
-              onClick={() => {
-                localStorage.removeItem("isLoggedIn"); 
-                setIsLoggedIn(false); 
-                window.location.href = "/";
-              }}
-              style={{ border: "1px solid #14b8a6", marginLeft: "10px", cursor: "pointer" }}
-            >
-              Logout
-            </button>
-          </>
+          /* כאשר המשתמש מחובר, נציג רק את כפתור הפרופיל */
+          <Link to="/profile" className="login-btn">Profile</Link>
         ) : (
+          /* כאשר המשתמש מנותק, נציג את כפתור ההתחברות */
           <Link to="/auth" className="login-btn">Login</Link>
         )}
       </div>
-
     </nav>
   );
 }
