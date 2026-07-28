@@ -14,13 +14,11 @@ export default function Profile() {
     }
   }, [navigate]);
 
-  // פונקציית יציאה מהחשבון (שהועברה מה-Navbar)
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     window.location.href = "/";
   };
 
-  // נתוני דמה (Mock Data) לפרונטאנד כרגע
   const user = {
     fullName: "Aviv",
     email: "aviv@example.com",
@@ -45,7 +43,6 @@ export default function Profile() {
     <div className="profile-container">
       <div className="profile-content-wrapper">
         
-        {/* אזור פרטי המשתמש */}
         <div className="profile-header">
           <img src={user.avatar} alt={user.fullName} className="profile-avatar" />
           <div className="profile-info">
@@ -71,7 +68,6 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* טאבים לניווט בין הטבלאות */}
         <div className="profile-tabs">
           <button 
             className={`tab-btn ${activeTab === "watchlist" ? "active" : ""}`}
@@ -87,7 +83,6 @@ export default function Profile() {
           </button>
         </div>
 
-        {/* טבלת הסרטים */}
         <div className="table-container">
           {currentList.length > 0 ? (
             <table className="movies-table">

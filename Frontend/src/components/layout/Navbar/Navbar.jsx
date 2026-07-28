@@ -47,10 +47,8 @@ function Navbar() {
 
       <div className="nav-right">
         {isLoggedIn ? (
-          /* כאשר המשתמש מחובר, נציג רק את כפתור הפרופיל */
           <Link to="/profile" className="login-btn">Profile</Link>
         ) : (
-          /* כאשר המשתמש מנותק, נציג את כפתור ההתחברות */
           <Link to="/auth" className="login-btn">Login</Link>
         )}
       </div>

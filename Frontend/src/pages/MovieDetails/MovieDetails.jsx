@@ -10,7 +10,6 @@ function MovieDetails() {
   const [newReviewText, setNewReviewText] = useState("");
   const [newReviewRating, setNewReviewRating] = useState(10);
   
-  // ניהול מצב הכפתורים החדשים (זמני לפרונטאנד)
   const [isFavorite, setIsFavorite] = useState(false);
   const [inWatchlist, setInWatchlist] = useState(false);
   
@@ -100,7 +99,6 @@ function MovieDetails() {
 
       <div className="content-wrapper">
         
-        {/* --- אזור עליון: פוסטר ומידע על הסרט --- */}
         <div className="movie-header-section">
           <img
             src={getImageUrl(movie.poster_path, "w500")}
@@ -118,7 +116,6 @@ function MovieDetails() {
               <span>{movie.vote_average?.toFixed(1)}/10</span>
             </div>
 
-            {/* כפתורי הפעולה החדשים - מופיעים רק למחוברים */}
             {isLoggedIn && (
               <div className="movie-actions">
                 <button 
@@ -156,9 +153,8 @@ function MovieDetails() {
               </div>
             )}
           </div>
-        </div> {/* סגירת אזור עליון */}
+        </div> 
 
-        {/* --- אזור תחתון: ביקורות (ממורכז מתחת למידע) --- */}
         <div className="reviews-section">
           <h2 className="reviews-title">User Reviews</h2>
           
@@ -210,7 +206,7 @@ function MovieDetails() {
               <p className="no-reviews">Be the first to review this movie!</p>
             )}
           </div>
-        </div> {/* סגירת אזור ביקורות */}
+        </div> 
         
       </div>
     </div>

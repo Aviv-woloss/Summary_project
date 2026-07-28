@@ -6,7 +6,6 @@ export default function Footer() {
     <footer className="footer-container">
       <div className="footer-content">
         
-        {/* Column 1: Logo & Description */}
         <div className="footer-col">
           <Link to="/" className="footer-logo">
             <span className="logo-accent">Watch</span>Time
@@ -16,7 +15,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Column 2: Quick Links */}
         <div className="footer-col">
           <h4>Navigation</h4>
           <ul className="footer-links">
@@ -26,7 +24,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 3: API Credit */}
         <div className="footer-col">
           <h4>Powered By</h4>
           <p className="footer-credit">
@@ -36,7 +33,6 @@ export default function Footer() {
 
       </div>
 
-      {/* Bottom Bar: Copyright */}
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} WatchTime. All rights reserved.</p>
       </div>

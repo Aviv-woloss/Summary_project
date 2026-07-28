@@ -7,7 +7,6 @@ function MovieRow({ title, movies }) {
   const rowRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // פונקציית הגלילה הידנית בלחיצה על החיצים
   const scroll = (direction) => {
     if (rowRef.current) {
       const { scrollLeft, clientWidth } = rowRef.current;
@@ -19,19 +18,17 @@ function MovieRow({ title, movies }) {
     }
   };
 
-  // אפקט גלילה אוטומטית (סרט נע) רציף וחלק
   useEffect(() => {
     const row = rowRef.current;
     if (!row || !movies || movies.length === 0) return;
 
     let animationFrameId;
-    const speed = 0.4; // מהירות הגלילה (ניתן להקטין או להגדיל)
+    const speed = 0.4; 
 
     const startScrolling = () => {
       if (!isHovered) {
         row.scrollLeft += speed;
         
-        // כשהגלילה מגיעה לסוף, חוזרים להתחלה בצורה חלקה
         if (row.scrollLeft >= row.scrollWidth - row.clientWidth - 1) {
           row.scrollLeft = 0;
         }
@@ -41,7 +38,6 @@ function MovieRow({ title, movies }) {
 
     animationFrameId = requestAnimationFrame(startScrolling);
 
-    // ניקוי האנימציה ב-Unmount של הקומפוננטה
     return () => cancelAnimationFrame(animationFrameId);
   }, [movies, isHovered]);
 
@@ -49,7 +45,7 @@ function MovieRow({ title, movies }) {
     <div className="movie-row">
       <h2 className="section-title">{title}</h2>
       <div 
-        className="row-wrapper"
+        className="row-wrapper"eee
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -70,7 +66,6 @@ function MovieRow({ title, movies }) {
                     {/* השנה תופיע בצד ימין */}
                     {releaseYear && <span className="movie-item-year">{releaseYear}</span>}
                     
-                    {/* הדירוג עם הכוכב יופיע בצד שמאל */}
                     {rating && (
                       <div className="movie-item-rating">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

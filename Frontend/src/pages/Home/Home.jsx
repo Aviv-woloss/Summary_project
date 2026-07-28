@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// שים לב שהוספנו את fetchTopRated לייבוא
 import { fetchTrending, fetchPopular, fetchByGenre, fetchTopRated } from "../../api/tmdb";
 import MovieRow from "../../components/movie/MovieRow/MovieRow";
 import CategoryFilter from "../../components/movie/CategoryFilter/CategoryFilter";
@@ -9,7 +8,7 @@ import "./Home.css";
 function Home() {
   const [trending, setTrending] = useState([]);
   const [popular, setPopular] = useState([]);
-  const [topRated, setTopRated] = useState([]); // ה-State החדש שלנו
+  const [topRated, setTopRated] = useState([]); 
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ function Home() {
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        // משכנו גם את topRated ב-Promise.all
         const [trendingData, popularData, topRatedData] = await Promise.all([
           fetchTrending(), 
           fetchPopular(),
@@ -87,7 +85,6 @@ function Home() {
           <MovieRow title="Trending This Week" movies={trending} />
           <MovieRow title="Popular Movies" movies={popular} />
           
-          {/* השורה החדשה שהוספנו */}
           <MovieRow title="Top Rated of All Time" movies={topRated} />
 
           <section className="section-spacing">
