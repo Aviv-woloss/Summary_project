@@ -24,7 +24,7 @@
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 ├── index.html              # Main HTML entry point
